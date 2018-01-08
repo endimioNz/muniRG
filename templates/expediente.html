@@ -1,0 +1,289 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+<h1>Expediente de {{ persona.apellido }}, {{persona.nombre}}</h1>
+
+<div class="col-sm-10 col-sm-offset-1">
+	<div class="panel panel-default">
+		<div class="panel-heading">Información Personal</div>
+		<div class="panel-body">
+			<dl class="dl-horizontal">
+				<dt>Apellido</dt><dd>{{persona.apellido}}</dd>
+				<dt>Nombre</dt><dd>{{persona.nombre}}</dd>
+				<dt>{{persona.identificacion}}</dt><dd>{{persona.numero}}</dd>
+				<dt>Telefono</dt><dd>{{persona.telefono}}</dd>
+				<dt>Estado Civil</dt><dd>{{persona.estadocivil}}</dd>
+				<dt>Profesion</dt><dd>{{persona.profesion}}</dd>
+				<dt>CUIL/CUIT</dt><dd>{{persona.cuil}}</dd>
+				<dt>Direccion</dt><dd>{{persona.direccion}}</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+<div class="col-sm-10 col-sm-offset-1">
+<div class="panel-group">
+	<div class="panel panel-default">
+		<div class="panel-heading"><a href="#collapse1" data-toggle="collapse">Capacitaciones</a></div>
+		<div class="panel-collapse collapse" id="collapse1">
+		<div class="panel-body">
+			<dl class="dl-horizontal">
+				<dt>Crear y Emprender</dt>
+					<dd>
+						Modelado de negocios:
+						{% if persona.modeladodenegocios == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>
+						Ventas: 
+						{% if persona.ventas == "False" %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %} 
+					</dd>
+					<dd>
+						Marketing: 
+						{% if persona.marketing == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>
+						Diseño de marca: 
+						{% if persona.disenodemarca == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>
+						Marca Colectiva: 
+						{% if persona.marcacolectiva == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>
+						Rentabilidad:
+						{% if persona.rentabilidad == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %} 
+					</dd>
+					<dd>
+						Costos: 
+						{% if persona.costos == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>
+						Cultura Emprendedora: 
+						{% if persona.culturaemprendedora == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %} 
+					</dd>
+					<dd>
+						Desarrollo de producto: 
+						{% if persona.desarrollodeproducto == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>
+						Entrenamiento Intensivo: 
+						{% if persona.entrenamientointensivo == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %} 
+					</dd>
+				<dt>Gestionando la Empresa</dt>
+					<dd>
+						Plan de negocios: 
+						{% if persona.plandenegocios == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>
+						Innovacion y Creatividad: 
+						{% if persona.innovacionycreatividad == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}	
+					</dd>
+				<dt>Habilidades Blandas</dt>
+					<dd>
+						Liderazgo: 
+						{% if persona.liderazgo == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}		 
+					</dd>
+					<dd>
+						Trabajo en Equipo:
+						{% if persona.trabajoenequipo == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}	 
+					</dd>
+					<dd>
+						Comunicacion Efectiva: 
+						{% if persona.comunicaionefectiva == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}		 
+					</dd>
+				<dt>Alternativas de Financiamiento</dt>
+					<dd>
+						Concursos y convocatorias:
+						{% if persona.concursosyconvocatorias == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}	 
+					</dd>
+					<dd>
+						Financiamiento Tradicional y no Tradicional: 
+						{% if persona.tradicionalynotradicional == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+				<dt>Tic's en la Gestion Empresarial </dt>
+					<dd>
+						Marketing Digital:
+						{% if persona.marketingdigital == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}	 
+					</dd>
+					<dd>
+						Ventas por Redes Sociales: 
+						{% if persona.redessociales == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>
+						Tienda Online:
+						{% if persona.tiendaonline == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+				<dt>Asociatividad Empresarial</dt>
+					<dd>
+						Cooperativismo:
+						{% if persona.cooperativismo == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>
+						Asociativismo:
+						{% if persona.asociativismo == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}
+					</dd>
+					<dd>	 	  
+						Persona Juridica:
+						{% if persona.personajuridica == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}	
+					</dd>
+				<dt>Inclusion Productiva</dt>
+					<dd>
+						Mujer Emprendedora:
+						{% if persona.mujeremprendedora == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}	 	
+					</dd>
+					<dd>
+						Trabajo y discapacidad:
+						{% if persona.trabajoydiscapacidad == False %}
+							<span class="glyphicon glyphicon-remove"></span>
+						{% else %}  
+							<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+						{% endif %}	
+					</dd>
+
+			</dl>
+		</div>
+		</div>
+	</div>
+</div>
+</div>
+<div class="col-sm-10 col-sm-offset-1">
+		{% for z in expediente %}
+			{% if z.asiento == "OBSERVACIONES" %}
+			 <div class="panel panel-warning">
+			 {% elif z.activo %}
+			 <div class="panel panel-default">
+			 {% else %}
+			 <div class="panel panel-danger">
+			 {% endif %}
+			 <div class="panel-heading">
+			 {% if z.asiento == "OTORGAMIENTO: CREDITO" or z.asiento == "OTORGAMIENTO: SUBSIDIO"%}
+			 	Asiento : {{ z.asiento }}
+					Rubro: {{ z.rubro }}
+					Monto: {{ z.monto}}
+					Fecha: {{ z.fecha }}
+			{%else%}
+					Asiento : {{ z.asiento }}
+					Rubro: {{ z.rubro }}
+					Fecha: {{ z.fecha }}
+			{%endif%}
+
+			 </div>
+			 
+			 <div class="panel-body">
+			 	{{ z.texto }}
+			 </div>
+			 {% if admin == 1 %}
+			 <div class="panel-footer">
+			 	Fecha Real: {{ z.timestamp }}
+				Modificar: <a href="asiento/{{ z.id }}"><button> Modificar</button></a>
+				Usuario: {{ z.usuario }}
+				{% if z.activo == True %}
+				<a href="desactivar/{{ z.id }}"><button> Desactivar</button></a>
+				{% else %}
+				<a href="activar/{{ z.id }}"><button> Activar </button></a>
+				{% endif%}
+			 </div>
+			 {%endif%}
+			 </div>
+		{% endfor %}
+</div>
+
+
+<a href="pdf/"><button type="button" id="oldbutton2" class="btn btn-lg btn-info">Generar <br> Informe</button></a>
+<a href="asiento"><button type="button" id="oldbutton" class="btn btn-lg btn-info">Nuevo <br>Asiento</button></a>
+{% endblock %}

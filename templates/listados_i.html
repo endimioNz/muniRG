@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h1 align="center"> {{ title }}</h1>
+	<table class="table table-hover table-condensed" align="center">
+		<thead>
+				<td>
+					Apellido y nombre 
+				</td>
+				<td>
+					Numero de identificacion 
+				</td>
+				<td>
+					Telefono
+				</td>
+				<td>
+					Profesion
+				</td>
+			</tr>
+			</thead>
+			<tbody>
+		{% for z in instance %}
+			<tr>
+				<td>
+					{{ z.apellido}}, {{ z.nombre }}
+				</td>
+				<td>
+					{{ z.numero }}
+				</td>
+				<td>
+					{{ z.telefono }}
+				</td>
+				<td>
+					{{ z.profesion}}
+				</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+
+<a href="{{ url }}/pdf" ><button type="button" id="oldbutton2" class="btn btn-primary">Generar <br> PDF</button></a>
+
+<div class="col-sm-4 col-sm-offset-4">
+	<canvas id="myChart" width="100" height="100"></canvas>
+	</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function(){
+	var endpoint = "/api/graphs/empr2/{{total}}"
+	console.log(endpoint)
+	var graflist = []
+	var totallist = []
+	$.ajax({
+		method: "GET",
+		url: endpoint,
+		success: function(data){
+
+			graflist = data.graflist
+			totallist = data.totallist
+			console.log(graflist)
+			console.log(totallist)
+			setgraph()
+			
+		},
+		error: function(error_data){
+			console.log('error')
+			console.log(error_data)
+		}
+	})
+
+
+function setgraph(){
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'pie',
+	    data: {
+	        labels: graflist,
+	        datasets: [{
+	            label: 'Emprendedores',
+	            data: totallist,
+	            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+	       	}]
+	        }
+	    })
+	
+}
+	
+
+});
+</script>
+{% endblock %}

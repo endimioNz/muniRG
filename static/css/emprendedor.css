@@ -1,0 +1,24 @@
+#oldbutton{
+	position: fixed;
+	bottom: 50%;
+	right: 0px;
+}
+
+#oldbutton2{
+	position: fixed;
+	bottom: 70%;
+	right: 0px;
+}
+
+#oldbutton3{
+	position: fixed;
+	bottom: 80%;
+	left: 0px;
+}
+body {
+  background-color: #fff;
+}
+.navbar {
+  background-color: #fd9830;
+  border: 0;
+}

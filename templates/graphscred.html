@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 align="center"> {{ title }}</h1>
+<div class="col-sm-6">
+<canvas id="myChart" width="100%" height="100%"></canvas>
+</div>
+<div class="col-sm-6">
+
+<table class="table table-hover table-condensed" align="center">
+	<thead>
+		<tr>
+		
+			<td>
+				AÑO
+			</td>
+			{% for z in years %}
+				<td>
+						{{ z }}
+
+				</td>
+			{% endfor %}
+		</tr>
+	</thead>
+	<tbody>
+		
+		<tr>
+			<td>ARTESANO</td>
+			{% for z in artesanolist %}
+				<td>
+					{% if z == 0 %}
+						--	
+					{% else %}
+						{{ z }}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>DISEÑO</td>
+			{% for z in diseñolist %}
+				<td>
+					{% if z == 0 %}
+						--	
+					{% else %}
+						{{ z }}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>GASTRONOMICO</td>
+			{% for z in gastronomicolist %}
+				<td>
+				{% if z == 0 %}
+						--	
+					{% else %}
+						{{ z }}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>HORTICOLA</td>
+			{% for z in horticolalist %}
+				<td>
+					{% if z == 0 %}
+						--	
+					{% else %}
+						{{ z }}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>SERVICIOS</td>
+			{% for z in servicioslist  %}
+				<td>
+					{% if z == 0 %}
+						--	
+					{% else %}
+						{{ z }}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>SUSTENTABILIDAD</td>
+			{% for z in sustentabilidadlist %}
+				<td>
+					{% if z == 0 %}
+						--	
+					{% else %}
+						{{ z }}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>TAXI/REMIS</td>
+			{% for z in autoslist %}
+				<td>
+					{% if z == 0 %}
+						--	
+					{% else %}
+						{{ z }}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>TECNOLOGIA APROPIADA</td>
+			{% for z in tecnologialist %}
+				<td>
+					{% if z == 0 %}
+						--	
+					{% else %}
+						{{ z }}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+		<tr>
+			<td>TECNOLOGICO</td>
+			{% for z in tecnologicolist %}
+				<td>
+					{% if z == 0 %}
+						--	
+					{% else %}
+						{{ z }}
+					{% endif %}
+				</td>
+			{% endfor %}
+		</tr>
+	</tbody>		
+	</table>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function(){
+	var endpoint = "/api/graphs/cred/"
+	var yearlist = []
+	var totallist = []
+	$.ajax({
+		method: "GET",
+		url: endpoint,
+		success: function(data){
+
+			yearlist = data.Years
+			totallist = data.Montos
+			setgraph()
+			
+		},
+		error: function(error_data){
+			console.log('error')
+			console.log(error_data)
+		}
+	})
+
+
+function setgraph(){
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'bar',
+	    data: {
+	        labels: yearlist,
+	        datasets: [{
+	            label: 'Dinero Invertido',
+	            data: totallist,
+	            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+	       	}]
+	        }
+	    })
+	
+}
+	
+});
+</script>
+{% endblock %}

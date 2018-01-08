@@ -1,0 +1,115 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html >
+  <head>
+	<meta charset="UTF-8">
+	<title>Emprendedores</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> <!-- meta viewport para maparatos mobiles -->
+
+	<link rel="stylesheet" href="/static/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/css/jquery-ui.css">
+
+	<link rel="stylesheet" href="/static/css/emprendedor.css">
+	
+  </head>
+	<body bg-color="#FF7F50">
+		<!-- CABECERA -->
+		<header>
+			<div class="navbar navbar-default">
+				<div class="container">
+					<div class="navbar-header">
+						<a href="/home" class="navbar-brand"> Inicio</a>
+					</div>
+
+					<div class="collapse navbar-collapse" align="right">
+						<ul class="nav navbar-nav">
+							<li><a href="/emprendedor/crear/">Emprendedor</a></li>
+							<li><a href="/listados">Capacitaciones</a></li>
+						</ul>
+						<ul class="nav navbar-nav">
+							{% 	if not request.user.is_authenticated or request.user.is_staff  %}
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administrador <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									
+
+									<li><a href="/graphs/subs"> Grafico de Subsidios por Año </a></li>
+									<li><a href="/graphs/cred">Grafico de Creditos por Año </a></li>
+									<li><a href="/graphs/empr">Grafico de Flujo de emprendedores </a></li>
+
+									<li role="separator" class="divider"></li>
+
+									<li><a href="/emprendedor"> Listado de Emprendedores </a></li>
+
+									<li role="separator" class="divider"></li>
+
+									<li><a href="/register"> Crear Usuario </a></li>
+
+			    				</ul>
+			    			</li>
+			    			{% endif %}
+			    		</ul>
+			    		<ul class="nav navbar-nav">
+						<form id="form1" class="navbar-form  role="search">
+								<input type="text" class="form-control" id="emprendedorurl" placeholder="Modificar Emprendedor">
+							<button class="btn btn-default" type="submit" id="emprendedor">Buscar</button>
+						</form>
+						</ul>
+						<ul class="nav navbar-nav">
+						<form   id="form2" class="navbar-form" role="search">
+							
+								<input type="text" class="form-control" id="url" placeholder="Buscar Expediente">
+							<button class="btn btn-default" type="submit" id="find">Buscar</button>
+						</form>
+						</ul>
+							 <ul class="nav navbar-nav">
+        		<li><a href="{% url 'logout' %}">Salir</a></li>
+    		</ul>
+					</div>
+				</div>
+			</div>
+				  	
+		</header>
+		<!-- CONTENIDO -->
+		<div class="container">
+			{% block content %}
+			{% endblock %}
+			<br>
+			<!-- <a class="btn btn-primary" href="/">Ir al Inicio</a> -->
+
+		</div>
+		<!-- PIE -->
+		<footer>
+			
+		</footer>
+		<!-- JAVASCRIPT -->
+		<script src="/static/js/jquery.js"></script>
+		<script src="/static/js/jquery-1.12.4.js"></script>
+		<script src="/static/js/jquery-ui.js"></script>
+		<script src="/static/js/bootstrap.js"></script>
+		<script src="/static/js/Chart.min.js"></script>
+		<script src="/static/js/Chart.bundle.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$('#form1').click(function(e){
+		    e.preventDefault();
+			});
+			$('#form2').click(function(e){
+		    e.preventDefault();
+			});
+			$('body').on('click', '#find', function(){
+				var site = $('#url').val();
+				$(location).attr('href', "/" + site + "/expediente");
+			});
+			$('body').on('click', '#emprendedor', function(){
+				var site = $('#emprendedorurl').val();
+				$(location).attr('href', "/emprendedor/" + site + "/u");
+			});
+		});
+		</script>
+		{% block javascript %} 
+		{% endblock %}
+	</body>
+</html>
+

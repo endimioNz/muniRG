@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+		   
+<form method="POST" action=""> {% csrf_token %}
+		<div id="hiddeninputs">
+			<input type="hidden" class="form-control" id="usuario" name="usuario" value="{{ user }}" placeholder="{{ user }}">
+			<input type="hidden" class="form-control" id="emprendedor" name="emprendedor" value="{{persona.id}}" placeholder="{{persona.id}}">
+		</div>
+	<table class="table table-hover table-condensed" align="center">
+	<thead>
+		<tr>
+		
+			<th align="center">
+				{{ persona.nombre }} {{ persona.apellido }}
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		
+		<tr>
+			<td align="center">
+				Asiento: {{ form.asiento }}
+			</td>
+		</tr>
+		<tr  id='showmonto' style="display: none">
+			<td align="center">
+				Monto: {{ form.monto }}
+			</td>
+		<tr>
+			<td align="center">
+				Rubro: {{ form.rubro }}
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				Fecha {{ form.fecha }}
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				Informacion del expediente
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<div class="col-sm-10">
+				
+				{{ form.texto }}
+			</div>
+			</td>
+		</tr>
+		<tr>
+			{% if modificar == 0 %}
+
+			<td colspan="2" align="center"> <input type="submit" value="Modificar Asiento"></td>
+
+			{% else %}
+
+			<td colspan="2" align="center"> <input type="submit" value="Generar Asiento"></td>
+
+			{% endif %}
+		</tr>
+	</tbody>
+	
+	</table>
+	<a href="javascript:history.back(-1);"><button type="button" id="oldbutton3" class="btn btn-lg btn-info">Volver</button></a>
+</form>
+	</div>
+
+</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function(){
+	function control(){
+		var asiento = $('#id_asiento').val();
+		if( asiento == "OTORGAMIENTO: SUBSIDIO" || asiento == "OTORGAMIENTO: CREDITO"){
+			$('#showmonto').removeAttr('style');
+		}
+	}
+	control()
+	$('body').on('change', "#id_asiento", function(){
+		var asiento = $(this).val();
+		
+		if( asiento == "OTORGAMIENTO: SUBSIDIO" || asiento == "OTORGAMIENTO: CREDITO"){
+			$('#showmonto').removeAttr('style');
+		}
+		else{
+			$('#id_monto').val(0);
+			$('#showmonto').attr('style', "display: none");
+		}	
+	});
+
+	textarea()
+	function textarea(){
+		$('#id_texto').prop('cols', 86);
+
+		$('#id_texto').prop("style","resize:none");
+		console.log('here')
+	}
+
+	});
+</script>
+{% endblock %}

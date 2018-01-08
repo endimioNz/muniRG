@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+
+<p align="left"> REPORTE DEL EXPEDIENTE DE {{persona.apellido}}, {{persona.nombre}}, {{ persona.identificacion }}: {{ persona.numero }}, VIVE EN: {{ persona.direccion}} ESTADO CIVIL: {{persona.estadocivil}}, DE PROFESION: {{persona.profesion}} </p>
+		{% for z in expediente %}
+		{% if z.activo == True and z.asiento != "OBSERVACIONES"%}
+		
+			{% if z.asiento == "OTORGAMIENTO: CREDITO" or z.asiento == "OTORGAMIENTO: SUBSIDIO"%}
+				
+				<p align="left"> <b>FECHA: {{ z.fecha }}, SE INICIO UN ASIENTO DE: {{ z.asiento }}, CON UN MONTO TOTAL DE {{ z.monto}}, EL RUBRO ABARCADO ES {{ z.rubro }}, Y SE REALIZO EL SIGUIENTE INFORME: </b> </p><br>
+				<p align="left"> {{ z.texto }}</p>
+			{%else%}	
+				<p align="left"> <b>FECHA: {{ z.fecha }}, SE INICIO UN ASIENTO DE: {{ z.asiento }}, EL RUBRO ABARCADO ES {{ z.rubro }}, Y SE REALIZO EL SIGUIENTE INFORME: </b> </p><br>
+					<p align="left">{{ z.texto }}</p>
+
+			{%endif%}
+		{% endif%}
+		{% endfor %}
+
+		
+{% endblock %}

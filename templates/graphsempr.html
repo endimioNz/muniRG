@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 align="center"> {{ title }}</h1>
+<div class="col-sm-6">
+	<canvas id="myChart" width="400" height="400"></canvas>
+	</div>
+<div class="col-sm-6">
+<div class="panel panel-default">
+	<div class="panel-heading"> Profesiones por año</div>
+		<div class="panel-body">
+			<div class="panel-body">
+				<dl class="dl-horizontal posicion">
+				</dl>
+			</div>
+		</div>
+	</div>
+			
+
+</div>	
+
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function(){
+	var endpoint = "/api/graphs/empr/"
+	var yearlist = []
+	var totallist = []
+	$.ajax({
+		method: "GET",
+		url: endpoint,
+		success: function(data){
+
+			yearlist = data.Years
+			totallist = data.Montos
+			setgraph()
+			
+		},
+		error: function(error_data){
+			console.log('error')
+			console.log(error_data)
+		}
+	})
+
+
+function setgraph(){
+	var ctx = document.getElementById("myChart").getContext('2d');
+	var myChart = new Chart(ctx, {
+	    type: 'line',
+	    data: {
+	        labels: yearlist,
+	        datasets: [{
+	            label: 'Emprendedores registrados',
+	            data: totallist,
+	            backgroundColor: [
+                'rgba(54, 162, 235, 0.2)',
+                
+            ],
+            borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+	       	}]
+	        },
+	        options:{
+
+	        }
+	    })
+	
+}
+	let years = "{{years|escapejs}}";
+	let profesion = "{{profesion|escapejs}}";
+	
+	years = JSON.parse(years);
+	profesion = JSON.parse(profesion)
+	
+
+	
+	yLen = years.length;
+
+
+	//ordenamiento de profesiones
+	wLen = profesion.length;
+	for (k = 0; k < wLen; k++) {
+		profesion[k].sort();
+	}
+
+	control = "";
+	
+	let prof = [];
+	let tot = [];
+	let numero = 1;
+	for (k = 0; k < yLen; k++) {
+		prof.push([])
+		tot.push([])
+		last = prof.length-1;	
+		xLen = profesion[k].length;
+		for (i = 0; i < xLen; i++) {
+		   	if(control != profesion[k][i]){
+		   		control = profesion[k][i];
+		   		prof[last].push(profesion[k][i]);
+		   		tot[last].push(1);
+		   		loop = 	tot[last].length - 1;
+		   	}
+		   	else{
+		   		tot[last][loop] = tot[last][loop] + 1 
+		   	}
+
+		}
+	}
+
+
+	for (i = 0; i < yLen; i++) {
+	    	$('.posicion').append('<dt>' + years[i] + '</dt>');
+
+		zLen = prof[i].length;
+		for (k = 0; k < zLen; k++) {
+			$('.posicion').append('<dd> Profesion: ' + prof[i][k] + ' Cantidad: ' + tot[i][k] + '</dd>');
+
+		}
+	}
+
+	console.log(prof)
+	console.log(tot)
+});
+</script>
+{% endblock %}

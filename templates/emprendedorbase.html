@@ -1,0 +1,63 @@
+{% extends 'base.html' %}{% block content %}
+<h1 align="center">{{ title }}</h1>
+<form method="POST" action=""> {% csrf_token %}
+<div class="col-md-8 col-md-offset-2">
+	
+<table align="center" class="table table-hover table-condense" >
+	<input type="hidden" class="form-control" id="usuario" name="usuario" value="{{ user }}" placeholder="{{ user }}">
+	<tr><td>Nombre: {{form.nombre}}</td><td>Apellido: {{form.apellido}}</td></tr>
+	<tr><td colspan="2" align="center"> Identificacion: {{ form.identificacion }} N°{{ form.numero }}</td></tr>
+	{% if form.errors %}
+	<tr><td bgcolor="#ff4d4d" colspan="2" align="center"> Numero de identificacion ya utilizado. </td></tr>
+	{% endif %}
+	
+	<tr><td>Telefono: {{form.telefono}}</td><td>Estado civil: {{form.estadocivil}}</td></tr>
+	<tr><td>Profesion: {{form.profesion}}</td><td>Cuil/Cuit: {{form.cuil}}</td></tr>
+	<tr><td colspan="2" align="center">Direccion: {{ form.direccion}}</td></tr>
+	<tr><td colspan="2" align="center"> <b>Capacitaciones</b> </td></tr>
+	<tr><td colspan="2" align="center"> <b>Crear y Emprender</b></td></tr>
+	<tr><td colspan="2" align="center"> Modelado de negocios: {{form.modeladodenegocios}}  Ventas: {{ form.ventas }} Marketing: {{ form.marketing }} Diseño de marca: {{ form.disenodemarca }}</td></tr>
+	<tr><td colspan="2" align="center"> Marca Colectiva: {{ form.marcacolectiva}} Rentabilidad: {{ form.rentabilidad }} Costos: {{ form.costos }}  </td></tr>
+	<tr><td colspan="2" align="center"> Cultura Emprendedora: {{ form.culturaemprendedora }} Desarrollo de producto: {{ form.desarrollodeproducto }} Entrenamiento Intensivo {{ form.entrenamientointensivo }} </td></tr>
+
+	<tr><td colspan="2" align="center"> <b>Gestionando la Empresa</b> </td></tr>
+	<tr><td colspan="2" align="center"> Plan de negocios: {{ form.plandenegocios }} Innovacion y Creatividad: {{ form.innovacionycreatividad }}</td></tr>
+
+	<tr><td colspan="2" align="center"> <b>Habilidades Blandas</b> </td></tr>
+	<tr><td colspan="2" align="center"> Liderazgo: {{ form.liderazgo }} Trabajo en Equipo: {{ form.trabajoenequipo }} Comunicacion Efectiva: {{ form.comunicacionefectiva }} </td></tr>
+	
+	<tr><td colspan="2" align="center"> <b>Alternativas de Financiamiento</b> </td></tr>
+	<tr><td colspan="2" align="center"> Concursos y convocatorias: {{ form.concursosyconvocatorias }} Financiamiento Tradicional y no Tradicional: {{ form.tradicionalynotradicional }} </td></tr>
+	
+	<tr><td colspan="2" align="center"> <b>Tic's en la Gestion Empresarial</b> </td></tr>
+	<tr><td colspan="2" align="center"> Marketing Digital: {{ form.marketingdigital }} Ventas por Redes Sociales: {{ form.redessociales }} Tienda Online: {{ form.tiendaonline }} </td></tr>
+	
+	<tr><td colspan="2" align="center"> <b>Asociatividad Empresarial</b> </td></tr>
+	<tr><td colspan="2" align="center"> Cooperativismo: {{ form.cooperativismo }} Asociativismo: {{ form.asociativismo }} Persona Juridica: {{ form.personajuridica }} </td></tr>
+	
+	<tr><td colspan="2" align="center"> <b>Inclusion Productiva</b> </td></tr>
+	<tr><td colspan="2" align="center"> Mujer Emprendedora: {{ form.mujeremprendedora }} Trabajo y discapacidad: {{ form.trabajoydiscapacidad }} </td></tr>
+	
+	<tr><td colspan="2" align="center"> Fecha de carga </td></tr>
+			
+			<tr><td colspan="2" align="center"> {{ form.fecha }}</td></tr>
+			
+	{% if modificar == 0 %}
+
+			<td colspan="2" align="center"> <input type="submit" value="Modificar Emprendedor"></td>
+
+			{% else %}
+			
+
+			<td colspan="2" align="center"> <input type="submit" value="Crear Emprendedor"></td>
+
+			{% endif %}
+
+	
+	
+	
+</table>
+
+</div>
+</form>
+{% endblock %}
