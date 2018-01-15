@@ -8,5 +8,9 @@ Instalados
 	 	reportlab
 	 	crispy form
 
+
+** Recordar crear "Super Users" (Administradores) para los dos usuarios encargados del proyecto  
+
+
 Aun falta:
 	Insertar logos del pdf
