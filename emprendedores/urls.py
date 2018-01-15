@@ -18,7 +18,8 @@ from django.contrib import admin
 from usuarios.views import *
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    #url(r'^admin/', admin.site.urls),
+    #no activar el administrador, es solo para solucionar problemas mayores.
     url(r'^logout/', logout_view, name="logout"),
     url(r'^register/', register_view, name="register"),
     url(r'', include('expediente.urls', namespace='expediente')),
