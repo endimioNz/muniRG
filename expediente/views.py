@@ -32,12 +32,12 @@ PAGE_HEIGHT=A4[1]
 PAGE_WIDTH=A4[0]
 styles = getSampleStyleSheet()
 
-pdfmetrics.registerFont(TTFont('Existence-Light', '../emprendedores/static/fonts/Existence-Light.ttf'))
-pdfmetrics.registerFont(TTFont('Ubuntu-B', '../emprendedores/static/fonts/ubuntu-font-family-0.83/Ubuntu-B.ttf'))
-pdfmetrics.registerFont(TTFont('Ubuntu-L', '../emprendedores/static/fonts/ubuntu-font-family-0.83/Ubuntu-L.ttf'))
-pdfmetrics.registerFont(TTFont('Ubuntu-M', '../emprendedores/static/fonts/ubuntu-font-family-0.83/Ubuntu-M.ttf'))
-pdfmetrics.registerFont(TTFont('Ubuntu-C', '../emprendedores/static/fonts/ubuntu-font-family-0.83/Ubuntu-C.ttf'))
-pdfmetrics.registerFont(TTFont('Ubuntu-R', '../emprendedores/static/fonts/ubuntu-font-family-0.83/Ubuntu-R.ttf'))
+pdfmetrics.registerFont(TTFont('Existence-Light', 'static/fonts/Existence-Light.ttf'))
+pdfmetrics.registerFont(TTFont('Ubuntu-B', 'static/fonts/ubuntu-font-family-0.83/Ubuntu-B.ttf'))
+pdfmetrics.registerFont(TTFont('Ubuntu-L', 'static/fonts/ubuntu-font-family-0.83/Ubuntu-L.ttf'))
+pdfmetrics.registerFont(TTFont('Ubuntu-M', 'static/fonts/ubuntu-font-family-0.83/Ubuntu-M.ttf'))
+pdfmetrics.registerFont(TTFont('Ubuntu-C', 'static/fonts/ubuntu-font-family-0.83/Ubuntu-C.ttf'))
+pdfmetrics.registerFont(TTFont('Ubuntu-R', 'static/fonts/ubuntu-font-family-0.83/Ubuntu-R.ttf'))
 
 styles.add(ParagraphStyle(name='tit2', alignment=TA_CENTER, fontName = "Ubuntu-M", fontSize = 14))
 styles.add(ParagraphStyle(name='tit1', alignment=TA_CENTER, fontName = "Existence-Light", fontSize = 16))
